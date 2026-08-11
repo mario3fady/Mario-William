@@ -1,0 +1,216 @@
+.hiring-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+
+  min-width: 252px;
+  padding: 17px 28px;
+
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 1;
+  transition:
+    transform 0.25s ease,
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.hiring-button__arrow {
+  font-size: 30px;
+  line-height: 0.7;
+  transition: transform 0.25s ease;
+}
+
+.hiring-button:hover .hiring-button__arrow {
+  transform: translateX(8px);
+}
+
+.hiring-button--yellow {
+  color: #000;
+  background: #fff544;
+}
+
+.hiring-button--black {
+  color: #fff;
+  background: #000;
+}
+
+.hiring-button:hover {
+  transform: translateY(-2px);
+}
+
+/* ---------- Banner ---------- */
+
+.hiring-banner {
+  width: 100%;
+  color: #000;
+}
+
+.hiring-banner__top {
+  min-height: 72px;
+
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+
+  padding: 10px 56px;
+
+  background: #f5f5f5;
+}
+
+.hiring-banner__logo {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.hiring-banner__message {
+  text-align: center;
+  font-size: 17px;
+}
+
+.hiring-banner__top .hiring-button {
+  justify-self: end;
+}
+
+.hiring-banner__hero {
+  position: relative;
+  min-height: 855px;
+  overflow: hidden;
+}
+
+.hiring-banner__image {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+}
+
+.hiring-banner__content {
+  position: absolute;
+  left: 4.7%;
+  top: 52%;
+
+  z-index: 2;
+  max-width: 620px;
+
+  transform: translateY(-10%);
+}
+
+.hiring-banner__heading {
+  margin: 0 0 50px;
+
+  color: #000;
+  font-size: clamp(56px, 5vw, 84px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+
+.hiring-banner__description {
+  max-width: 630px;
+  margin-bottom: 56px;
+
+  color: #000;
+  font-size: 22px;
+  line-height: 1.45;
+}
+
+.hiring-banner__description p {
+  margin: 0;
+}
+
+/* ---------- Accessibility ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .hiring-button,
+  .hiring-button__arrow {
+    transition: none;
+  }
+}
+
+/* ---------- Tablet ---------- */
+
+@media screen and (max-width: 990px) {
+
+  .hiring-banner__top {
+    grid-template-columns: 1fr auto;
+    padding: 12px 24px;
+  }
+
+  .hiring-banner__message {
+    display: none;
+  }
+
+  .hiring-banner__hero {
+    min-height: 700px;
+  }
+
+  .hiring-banner__content {
+    left: 30px;
+    right: 30px;
+  }
+
+}
+
+/* ---------- Mobile ---------- */
+
+@media screen and (max-width: 749px) {
+
+  .hiring-banner__top {
+    grid-template-columns: 1fr;
+    gap: 14px;
+
+    padding: 16px 20px;
+    text-align: center;
+  }
+
+  .hiring-banner__logo {
+    font-size: 22px;
+  }
+
+  .hiring-banner__message {
+    display: block;
+    font-size: 14px;
+  }
+
+  .hiring-banner__top .hiring-button {
+    justify-self: center;
+  }
+
+  .hiring-banner__hero {
+    min-height: 680px;
+  }
+
+  .hiring-banner__content {
+    top: auto;
+    bottom: 35px;
+
+    left: 20px;
+    right: 20px;
+
+    transform: none;
+  }
+
+  .hiring-banner__heading {
+    margin-bottom: 25px;
+    font-size: 44px;
+  }
+
+  .hiring-banner__description {
+    margin-bottom: 30px;
+    font-size: 16px;
+  }
+
+  .hiring-button {
+    min-width: 220px;
+    padding: 16px 22px;
+    font-size: 16px;
+  }
+
+}

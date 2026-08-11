@@ -1,0 +1,200 @@
+{{ 'hiring-test.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'hiring-test.js' | asset_url }}" defer="defer"></script>
+
+<section
+  class="hiring-grid"
+  id="HiringGrid-{{ section.id }}"
+  data-hiring-grid
+>
+
+  <div class="hiring-grid__inner">
+
+    <h2 class="hiring-grid__heading">
+      {{ section.settings.heading }}
+    </h2>
+
+    <div class="hiring-grid__items">
+
+      {% for block in section.blocks %}
+
+        {% assign selected_product = block.settings.product %}
+
+        {% if selected_product != blank %}
+
+          <div
+            class="hiring-product"
+            {{ block.shopify_attributes }}
+          >
+
+            <div class="hiring-product__image-wrapper">
+
+              {{
+                selected_product.featured_image
+                | image_url: width: 900
+                | image_tag:
+                  class: 'hiring-product__image',
+                  loading: 'lazy',
+                  widths: '400, 600, 900'
+              }}
+
+              <button
+                type="button"
+                class="hiring-product__hotspot"
+                aria-label="View {{ selected_product.title }}"
+                data-product-trigger
+                data-product-handle="{{ selected_product.handle }}"
+              >
+                +
+              </button>
+
+            </div>
+
+            <script
+              type="application/json"
+              data-product-json="{{ selected_product.handle }}"
+            >
+              {{ selected_product | json }}
+            </script>
+
+          </div>
+
+        {% endif %}
+
+      {% endfor %}
+
+    </div>
+
+  </div>
+
+  <!-- Reusable product popup -->
+  <dialog class="hiring-popup" data-product-popup>
+
+    <button
+      type="button"
+      class="hiring-popup__close"
+      aria-label="Close product popup"
+      data-popup-close
+    >
+      ×
+    </button>
+
+    <div class="hiring-popup__product">
+
+      <img
+        class="hiring-popup__image"
+        data-popup-image
+        alt=""
+        width="180"
+        height="190"
+      >
+
+      <div class="hiring-popup__info">
+
+        <h3
+          class="hiring-popup__title"
+          data-popup-title
+        ></h3>
+
+        <div
+          class="hiring-popup__price"
+          data-popup-price
+        ></div>
+
+        <div
+          class="hiring-popup__description"
+          data-popup-description
+        ></div>
+
+      </div>
+
+    </div>
+
+    <div
+      class="hiring-popup__options"
+      data-popup-options
+    ></div>
+
+    <button
+      type="button"
+      class="hiring-popup__add"
+      data-add-to-cart
+    >
+      <span>ADD TO CART</span>
+      <span class="hiring-popup__add-arrow">→</span>
+    </button>
+
+    <div
+      class="hiring-popup__message"
+      aria-live="polite"
+      data-cart-message
+    ></div>
+
+  </dialog>
+
+  {% assign bonus_product = section.settings.bonus_product %}
+
+  {% if bonus_product != blank %}
+    <script type="application/json" data-bonus-product-json>
+      {{ bonus_product | json }}
+    </script>
+  {% endif %}
+
+</section>
+
+{% schema %}
+{
+  "name": "Hiring Product Grid",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Tisso vison in the wild"
+    },
+    {
+      "type": "product",
+      "id": "bonus_product",
+      "label": "Black + Medium bonus product"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Hiring Product Grid",
+      "blocks": [
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        },
+        {
+          "type": "product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

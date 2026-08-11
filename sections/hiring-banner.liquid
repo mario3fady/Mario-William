@@ -1,0 +1,122 @@
+{{ 'hiring-test.css' | asset_url | stylesheet_tag }}
+
+<section class="hiring-banner" id="HiringBanner-{{ section.id }}">
+
+  <div class="hiring-banner__top">
+    <div class="hiring-banner__logo">
+      {{ section.settings.logo_text }}
+    </div>
+
+    <div class="hiring-banner__message">
+      {{ section.settings.top_message }}
+    </div>
+
+    <a
+      href="{{ section.settings.top_button_link }}"
+      class="hiring-button hiring-button--yellow"
+    >
+      <span>{{ section.settings.top_button_label }}</span>
+      <span class="hiring-button__arrow">→</span>
+    </a>
+  </div>
+
+  <div class="hiring-banner__hero">
+
+    {% if section.settings.banner_image != blank %}
+      {{
+        section.settings.banner_image
+        | image_url: width: 2400
+        | image_tag:
+          class: 'hiring-banner__image',
+          loading: 'eager',
+          widths: '750, 1100, 1500, 2000, 2400'
+      }}
+    {% endif %}
+
+    <div class="hiring-banner__content">
+
+      <h1 class="hiring-banner__heading">
+        {{ section.settings.heading }}
+      </h1>
+
+      <div class="hiring-banner__description">
+        {{ section.settings.description }}
+      </div>
+
+      <a
+        href="{{ section.settings.shop_button_link }}"
+        class="hiring-button hiring-button--black"
+      >
+        <span>{{ section.settings.shop_button_label }}</span>
+        <span class="hiring-button__arrow">→</span>
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "Hiring Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo text",
+      "default": "TISSO VISON"
+    },
+    {
+      "type": "text",
+      "id": "top_message",
+      "label": "Top message",
+      "default": "Find the ideal gift for your loved ones."
+    },
+    {
+      "type": "text",
+      "id": "top_button_label",
+      "label": "Top button label",
+      "default": "CHOOSE GIFT"
+    },
+    {
+      "type": "url",
+      "id": "top_button_link",
+      "label": "Top button link"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The Gift Guide"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Discover Joy: Your Ultimate Holiday Gift Destination.\nExplore our curated selection and find the perfect gifts to delight your loved ones this holiday season."
+    },
+    {
+      "type": "text",
+      "id": "shop_button_label",
+      "label": "Shop button label",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "shop_button_link",
+      "label": "Shop button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hiring Banner"
+    }
+  ]
+}
+{% endschema %}
