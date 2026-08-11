@@ -21,17 +21,14 @@
   </div>
 
   <div class="hiring-banner__hero">
-
-    {% if section.settings.banner_image != blank %}
-      {{
-        section.settings.banner_image
-        | image_url: width: 2400
-        | image_tag:
-          class: 'hiring-banner__image',
-          loading: 'eager',
-          widths: '750, 1100, 1500, 2000, 2400'
-      }}
-    {% endif %}
+    <img
+        src="{{ 'gift-guide-banner.svg' | asset_url }}"
+        class="hiring-banner__image"
+        alt=""
+        width="1004"
+        height="382"
+        loading="eager"
+    >
 
     <div class="hiring-banner__content">
 
